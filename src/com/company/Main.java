@@ -66,11 +66,11 @@ class Main {
                 }
             }
 
-            if (myArmy.lose || enemy.lose) break;
+            if (myArmy.isLoser() || enemy.isLoser()) break;
             turn = !turn;
         } // end of while loop
 
-        if (myArmy.lose) {
+        if (myArmy.isLoser()) {
             System.out.println("you lose ;(");
         }
         else {
