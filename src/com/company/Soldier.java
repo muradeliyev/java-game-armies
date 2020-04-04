@@ -3,16 +3,16 @@ package com.company;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Soldier {
-    public float health;
+    private float health;
 
-    public float power;
+    private float power;
 
-    public Gun gun = new Gun();
+    private Gun gun = new Gun();
 
-    public boolean isDead = false;
+    private boolean isDead = false;
 
     Soldier() {
-        this.health = (float)ThreadLocalRandom.current().nextInt(100, 500);
+        this.health = (float) ThreadLocalRandom.current().nextInt(100, 500);
         this.power = this.health / 100;
     }
 
@@ -25,10 +25,20 @@ public class Soldier {
     }
 
     public void beAttacked(Soldier enemy) {
-        this.health -= enemy.power * enemy.gun.power;
+        this.health -= enemy.power * enemy.gun.getPower();
 
         if (this.health <=  0) {
             this.isDead = true;
         }
     }
+
+    // getters and setters
+    public boolean isDead() {
+        return this.isDead;
+    }
+
+    public float getHealth() {
+        return this.health;
+    }
+
 }

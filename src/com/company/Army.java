@@ -3,12 +3,12 @@ package com.company;
 import java.util.Random;
 
 public class Army {
-    public Soldier[] soldiers;
+    private Soldier[] soldiers;
 
-    public boolean lose = false;
+    private boolean lose = false;
 
-    public int dead = 0;
-    public int capacity;
+    private int dead = 0;
+    private int capacity;
 
     // n represents the number of soldiers in the army
     Army(int n) {
@@ -34,10 +34,9 @@ public class Army {
                 int who = rn.nextInt(enemy.soldiers.length);
 
                 this.soldiers[j].beAttacked(enemy.soldiers[who]);
-
             }
 
-            if (this.soldiers[j].isDead) {
+            if (this.soldiers[j].isDead()) {
                 this.dead++;
                 // removing dead soldier
                 int length = this.soldiers.length;
@@ -67,7 +66,7 @@ public class Army {
     public int health() {
         int hp = 0;
         for (int i = 0; i < this.soldiers.length; i++) {
-            hp += this.soldiers[i].health;
+            hp += this.soldiers[i].getHealth();
         }
         return hp;
     }
@@ -77,5 +76,10 @@ public class Army {
         int alive = this.capacity - this.dead;
         stat = this.health() + "        " + alive + "        " + this.dead;
         return stat;
+    }
+
+    // getters and setters
+    public boolean isLoser() {
+        return this.lose;
     }
 }
